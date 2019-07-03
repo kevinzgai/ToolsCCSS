@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <script src="/static/layui/layui.all.js"></script>
+    <script>
+        // layer.alert('aa')
+    </script>
+</head>
+
+<body>
+    {% block content %}
+
+    <div class="layui-container">
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>昵称</th>
+                    <th>影院编码</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cinema in cinemalist %}
+                <tr>
+                    <td>{{ cinema.names }}</td><td>{{ cinema.cinemaCode }}</td>
+                </tr>
+                {% endfor %}               
+                
+                
+                    
+            </tbody>
+        </table>
+    </div>
+
+    {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load staticfiles %}
+    {% load bootstrap4 %}
+
+</head>
+<body>
+    
+
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>fa-rotate-180</th>
+                    <th>fa-rotate-270</th>
+                    <th>3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td scope="row"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        {% for c in cinemadata %}
+        <tr>
+            <td>{{ c.codename }}</td>
+            <td>{{ c.createdby }}</td>
+        </tr>
+    {% endfor %}
+</body>
+</html>
