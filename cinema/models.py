@@ -9,7 +9,7 @@ class ciname(models.Model):
     systemName = models.CharField('票务系统',max_length=50)
     maoyanId = models.IntegerField('猫眼id')
     taopiaopiaoId = models.IntegerField('淘票票id')
-    readme = models.TextField("说明")
+    readme = models.TextField("说明",default='not thing')
 
     class Meta:
         verbose_name = '影城名称'
