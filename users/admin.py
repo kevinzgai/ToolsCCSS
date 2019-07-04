@@ -40,7 +40,24 @@ class UserModelFilter(admin.SimpleListFilter):
 class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {
-            'fields': ('email', 'password')
+            'fields': ('email',
+                       'password',
+                       "name",
+                       "sex",
+                       "brithday",
+                       "job_number",
+                       "zhengzhi_mianmao",
+                       "zhengzhi_time",
+                       "job",
+                       "job_time",
+                       "job_2",
+                       "id_number",
+                       "xue_li",
+                       "school",
+                       "graduate_time",
+                       "job_join_time",
+                       "team_belong",
+                       "phone")
         }),
         (_('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser',
@@ -61,12 +78,12 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ('email', 'is_active')
+    list_display = ('name','email', 'is_active')
     list_filter = (UserModelFilter, 'is_staff', 'is_superuser', 'is_active',)
     search_fields = ('email',)
     ordering = ('email',)
-    actions = ('activate_users', 'send_activation_email', )
-    readonly_fields = ('last_login', 'date_joined', )
+    actions = ('activate_users', 'send_activation_email',)
+    readonly_fields = ('last_login', 'date_joined',)
 
     def get_queryset(self, request):
         # optimize queryset for list display.
@@ -90,7 +107,8 @@ class UserAdmin(BaseUserAdmin):
         self.message_user(
             request,
             _('Successfully activated %(count)d %(items)s.') %
-            {'count': n, 'items': model_ngettext(self.opts, n)},  messages.SUCCESS)
+            {'count': n, 'items': model_ngettext(self.opts, n)}, messages.SUCCESS)
+
     activate_users.short_description = _('Activate selected %(verbose_name_plural)s')
 
     def send_activation_email(self, request, queryset):
@@ -106,7 +124,7 @@ class UserAdmin(BaseUserAdmin):
 
         self.message_user(
             request, _('Activation emails sent to %(count)d %(items)s.') %
-            {'count': n, 'items': model_ngettext(self.opts, n)},  messages.SUCCESS)
+                     {'count': n, 'items': model_ngettext(self.opts, n)}, messages.SUCCESS)
 
     send_activation_email.short_description = \
         _('Send activation emails to selected %(verbose_name_plural)s')

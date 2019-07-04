@@ -1,5 +1,5 @@
 from django.contrib import admin
-from cinema.models import ciname
+from cinema.models import cinema
 
 # Register your models here.
-admin.site.register(ciname)
+admin.site.register(cinema)

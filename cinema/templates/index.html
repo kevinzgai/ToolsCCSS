@@ -1,10 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load staticfiles %}
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <!--Vue-->
+    <script src="/static/libs/vue.js"> </script>
 </head>
+
 <body>
 
+    <div class="navbar">
+        <a class="navbar-brand" href="#">Title</a>
+        <ul class="nav navbar-nav">
+            <li class="active">
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Link</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container container-center jumbotron">
+
+        <div class="col-sm-4 col-sm-offset-4">
+            <div id="app" class="form-group">
+                <p class="form-control" v-text="aaa"> </p>
+                <span>Input here:</span>
+                <input type="text" class="form-control" v-model="aaa">
+
+            </div>
+        </div>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    aaa: ''
+                }
+            },
+        })
+    </script>
 </body>
+
 </html>

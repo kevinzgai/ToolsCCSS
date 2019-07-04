@@ -7,6 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from .conf import settings
 from .managers import UserInheritanceManager, UserManager
+from datetime import datetime
+import json,time
 
 
 class AbstractUser(AbstractBaseUser, PermissionsMixin):
@@ -59,11 +61,53 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
 
 
 class User(AbstractUser):
-
     """
     Concrete class of AbstractUser.
     Use this if you don't need to extend User.
     """
+    name = models.CharField("姓名", max_length=20, default='第一次登陆')  # 姓名
+    sex = models.CharField("性别", max_length=3, default='男')  # 性别
+    brithday = models.CharField('出生日期', max_length=20, default='1989-05-18')  # 生日 8位，年龄用生日计算
+    job_number = models.CharField('工作证号', max_length=10, default='0001')  # 工作证号
+
+    zhengzhi_mianmao = models.CharField('政治面貌', max_length=10, default='群众')  # 政治面貌
+    zhengzhi_time = models.CharField(max_length=20, default='2019-01-01')  # 获得职称时间
+
+    job = models.CharField('职务',max_length=30, default='工程师')  # 职务
+    job_time = models.CharField('获得职务时间',max_length=30, default='2019-01-01')  # 获得职务时间
+
+    job_2 = models.CharField(max_length=30, default='员工')  # 职务
+    id_number = models.CharField(max_length=30, default='421123198805182054')  # 身份证号码
+
+    xue_li = models.CharField(max_length=30, default='本科')  # 学历
+    school = models.CharField('学校',max_length=30, default='北京师范大学')  # 学校
+    graduate_time = models.CharField('毕业时间',max_length=20, default='2019-01-01')  # 毕业时间
+    job_join_time = models.CharField('入职时间',max_length=20, default='2019-01-01')  # 入职时间
+    team_belong = models.CharField('所属部分',max_length=20, default='技术部',null=True)  # 所属部门
+
+
+    phone = models.CharField('练习方式',max_length=20, default='13788881111')  # 手机号
+
+
 
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'
+
+    def __str__(self):
+        return self.name
+
+    def age(self):
+        return brithday_filter(self.brithday)
+
+def brithday_filter(brithday):
+    t=time.time()
+    dt=datetime.fromtimestamp(t)
+    b_year=brithday[:4]
+    b_month=brithday[4:6]
+    b_day=brithday[6:]
+    age=int(dt.year)-int(b_year)-1
+
+    if int(b_month)>(int(dt.month)-1):
+        if int(b_day)>(int(dt.day)-1):
+            age+=1
+    return age
