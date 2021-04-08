@@ -43,7 +43,7 @@ dask==1.2.2
 decorator==4.4.0
 defusedxml==0.6.0
 distributed==1.28.1
-Django==2.2.3
+Django==2.2.20
 django-appconf==1.0.3
 django-bootstrap3==11.0.0
 django-compressor==2.2
